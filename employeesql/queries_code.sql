@@ -54,3 +54,17 @@ SELECT  last_name, COUNT(last_name) AS "frequency_count"
 FROM employees
 GROUP BY last_name
 ORDER BY "frequency_count" DESC;
+
+--BONUS: create a view to read employees' average salary per title in Pandas
+
+CREATE VIEW Average_Salary AS
+SELECT ROUND(AVG(salaries.salary),2) AS "AVG salary", titles.title
+FROM salaries
+JOIN employees ON employees.emp_no = salaries.emp_no
+JOIN titles ON titles.title_id = employees.emp_title_id
+GROUP by titles.title;
+
+SELECT *
+FROM Average_Salary
+
+
